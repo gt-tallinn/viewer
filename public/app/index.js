@@ -1,14 +1,21 @@
 'use strict';
 
-
-
-const dataurl = window.location.search.substring(1).split('=')[1]
-
-// create a network
+/**
+ * Get container to draw
+ * @param {String} id - container id
+ * @return {Element}
+ */
 const getContainer = (id) => {
     return document.getElementById(id);
 }
 
+/**
+ * Make a request
+ * @param uri
+ * @param method
+ * @param body
+ * @return {*}
+ */
 const getData = (uri, method = 'GET', body = {}) => {
 
     if(!uri) {
@@ -32,12 +39,25 @@ const getData = (uri, method = 'GET', body = {}) => {
 
 }
 
+/**
+ * Creates new graph object in provided html container
+ * @param {String} containerId - html container id
+ * @param {Object} data - formatted data
+ * @param {Object} options - graph options
+ * @return {Promise}
+ */
 const createGraph = (containerId, data = {}, options = {}) => {
 
     const graph = new vis.Network(getContainer(containerId), data, options);
     return Promise.resolve(graph)
 }
 
+/**
+ * Convert data to proper format
+ * @param {Array} nodes - components
+ * @param {Array} edges - requests
+ * @return {{nodes: *, edges: *}}
+ */
 const prepareData = (nodes, edges) => {
 
     nodes = nodes || [
@@ -58,19 +78,30 @@ const prepareData = (nodes, edges) => {
     return { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) }
 }
 
-getData(dataurl)
-    .then(result => {
+/**
+ * Call data reload and (re)drawing the graph
+ */
+const reload = () => {
 
-        const options = {
-            nodes: settings.nodes,
-            groups: settings.groups,
-            edges: settings.edges.options,
-            physics: settings.physics
-        }
+    const dataUrl = window.location.search.substring(1).split('url=')[1]
 
-        return createGraph('network', prepareData(result.nodes, result.edges), options);
-    })
-    .then((graph) => {
-        console.log('graph', graph);
-    })
-    .catch(err => console.log('err', err));
+    getData(dataUrl)
+        .then(result => {
+
+            const options = {
+                nodes: settings.nodes,
+                groups: settings.groups,
+                edges: settings.edges.options,
+                physics: settings.physics
+            }
+
+            return createGraph('network', prepareData(result.nodes, result.edges), options);
+        })
+        .then((graph) => {
+            console.log('graph', graph);
+        })
+        .catch(err => console.log('err', err));
+}
+
+
+reload();
