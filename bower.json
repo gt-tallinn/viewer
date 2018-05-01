@@ -1,0 +1,19 @@
+{
+  "name": "viewer",
+  "description": "explorer viewer",
+  "main": "index.js",
+  "authors": [
+    "Artem Vladimirov <artem.vladimirov@liflandgaming.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/gt-tallinn/viewer",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vis": "^4.21.0"
+  }
+}
