@@ -2,8 +2,8 @@ const settings = {
     edges: {
         options: { width: 1, },
         colors: {
-            'queue': { color: '#ff8000'},
-            'http': { color: '#5b5b5b'},
+            'queue': { color: '#ff8000', highlight: '#ff8000'},
+            'http': { color: '#5b5b5b', highlight: '#5b5b5b'},
         }
     },
     groups: {
@@ -26,5 +26,5 @@ const settings = {
 
 
 const getEdgeStyle = (name) => {
-    return settings.edges.colors[name].color
+    return settings.edges.colors[name]
 }

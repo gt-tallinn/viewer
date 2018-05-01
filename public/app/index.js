@@ -69,10 +69,10 @@ const prepareData = (nodes, edges) => {
     ];
 
     edges = edges || [
-        {from: 'fo-server', to: 'token-service', color: getEdgeStyle('http'), arrows:'to, from' },
-        {from: 'fo-server', to: 'session-service', color: getEdgeStyle('http'), arrows:'to, from' },
-        {from: 'fo-server', to: 'platform', color: getEdgeStyle('queue'), arrows:'to, from' },
-        {from: 'platform', to: 'mongodb', color: getEdgeStyle('http'), arrows:'to, from' },
+        {from: 'fo-server', to: 'token-service', color: getEdgeStyle('http'), arrows:'to' },
+        {from: 'fo-server', to: 'session-service', color: getEdgeStyle('http'), arrows:'to' },
+        {from: 'fo-server', to: 'platform', color: getEdgeStyle('queue'), arrows:'to' },
+        {from: 'platform', to: 'mongodb', color: getEdgeStyle('http'), arrows:'to' },
     ];
 
     return { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) }
@@ -98,7 +98,7 @@ const reload = () => {
             return createGraph('network', prepareData(result.nodes, result.edges), options);
         })
         .then((graph) => {
-            console.log('graph', graph);
+            //do something with graph object
         })
         .catch(err => console.log('err', err));
 }
