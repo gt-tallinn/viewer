@@ -1,0 +1,19 @@
+{
+  "name": "viewer",
+  "version": "1.0.0",
+  "description": "explorer viewer",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gt-tallinn/viewer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gt-tallinn/viewer/issues"
+  },
+  "homepage": "https://github.com/gt-tallinn/viewer#readme"
+}
